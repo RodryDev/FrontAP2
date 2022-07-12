@@ -14,11 +14,14 @@ export class LoginService {
   constructor(private http: HttpClient, private cookies: CookieService) { }
 
 
-  //traiga uno solo
+  
+//Escribo el user
 
   login(User: any): Observable<any> {
     return this.http.post(this.url+"login",User);
   }
+
+//traiga uno solo
 
   getUser(id:number):Observable<any>{ 
     return this.http.get(this.url+id); 
@@ -36,6 +39,7 @@ export class LoginService {
   
   deleteToken(){
     this.cookies.delete("token");
+    
   }
 
   getUserLogged() {

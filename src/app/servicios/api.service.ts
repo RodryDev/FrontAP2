@@ -14,7 +14,7 @@ export class ApiService  {
   private urlRoot = 'http://localhost:8080/api/'
   
  
-  ////Metodos Persona//////////////////////////////////////////
+////Metodos Persona//////////////////////////////////////////
 
 ////Constructor inicia metodo http////
     constructor(private http: HttpClient) { }
@@ -79,7 +79,7 @@ return this.http.post(this.urlRoot + 'educacion/nueva',educacion);
 ////Editar Educacion///
 
 editarEducacion(id:number, educacion: any):Observable <any>{
-return this.http.put(this.urlRoot + 'educacion/' + id, educacion);
+return this.http.put(this.urlRoot + 'educacion/editar' + id, educacion);
 
 }
 
@@ -204,6 +204,42 @@ return this.http.put(this.urlRoot + 'habilidad/' + id, habilidad);
 buscarHabilidad(id:number):Observable <any>{
 return this.http.get(this.urlRoot + 'habilidad/'+ id);
 }
+
+
+
+
+
+////////////////METODOS ACERCA DE////////////////////
+
+
+///Listar ACERCA DE////
+
+getListAcercaDe():Observable <any>{
+  
+  return this.http.get(this.urlRoot + 'acercaDe/listar');
+}
+/////Borrar ACERCA DE///
+
+borrarAcercaDe(id:number):Observable <any>{
+return this.http.delete(this.urlRoot + 'acercaDe/borrar/' + id);
+}
+
+////Guardar ACERCA DE////
+
+guardarAcercaDe(acercaDe:any):Observable <any>{
+return this.http.post(this.urlRoot + 'acercaDe/nueva',acercaDe);
+}
+
+
+////Editar ACERCA DE///
+
+editarAcercaDe(id:number, acercaDe: any):Observable <any>{
+return this.http.put(this.urlRoot + 'acercaDe/' + id, acercaDe);
+
+}
+
+
+
 
 
 

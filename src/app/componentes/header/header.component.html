@@ -1,66 +1,108 @@
 <!---NAV BAR-->
-<body>
-    <nav  class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-      <a class="navbar-brand" href="../../../assets/img/ap.png"></a>
-      
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="grey-text fab fa-facebook-square fa-2x"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="grey-text fab fa-instagram fa-2x"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="grey-text fab fa-twitter fa-2x"></i>
-            </a>
-          </li>
+<header class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+  <nav class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+    <div class="logoRedes col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+      <div class="logos col-xs-12 col-sm-12 col-md-12 col-lg-3">
+        <ul>
+          <li> <img class="logoAp img-fluid" src="/assets/img/logoAp.png" alt="Argentina programa"></li>
+
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-          
-        </form>
       </div>
-    </nav>
-    
+
+
+      <!-----------MENU OPCIONES----------->
+      <ul class="menu col-xs-12 col-sm-12 col-md-12 col-lg-5">
+        <li><a href="#quiensoy">Quién soy?</a></li>
+        <li><a href="#experiencia">Educación</a></li>
+        <li><a href="#educacion">Experiencia</a></li>
+        <li><a href="#habilidades">Skills</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+      </ul>
+
+      <!--------------REDES---------------------->
+      <div class="redes col-xs-12 col-sm-12 col-md-12 col-lg-3">
+        <ul>
+          <li> <a href="https://www.linkedin.com/in/rodrigo-amoedo-cigarreta-051708226/"><i
+                class="icono fa-brands fa-linkedin"></i></a></li>
+          <li> <a href="https://github.com/RodryDev"><i class="fa-brands fa-github"></i></a></li>
+          <li> <a href="https://www.instagram.com/ro.amoedo.cigarreta/"><i class="fa-brands fa-instagram"></i></a></li>
+          <li> <a href="https://www.facebook.com/Rocko.Cell/"><i class="fa-brands fa-facebook"></i></a></li>
+          <li> <a href="https://walink.co/5d664c"><i class="fa-brands fa-whatsapp"></i></a></li>
+          <li> <a
+              href="mailto:rodryam88@gmail.com?subject=Acordar%20una%20entrevista&body=Hola%20Rodrigo%20espero%20que%20se%20encuentre%20bien%2C%20le%20contacto%20por%20el%20siguiente%20motivo.....">
+              <i class="fas fa-envelope"></i></a></li>
+
+        </ul>
+
+      </div>
 
 
 
+      <div class=" login col-xs-12 col-sm-12 col-md-12 col-lg-1">
+        <button class="btn btn-outline-success" type="submit"  *ngIf="ulogged == ''" (click)="abrirFormulario(modalLogin)">Login</button>
 
-<!---BANNER-->
+        <button class="btn btn-outline-danger" *ngIf="ulogged != ''" type="close" (click)="salir()">Salir</button>
+      </div>
+
+
+    </div>
+
+  </nav>
+
+
+</header>
+
+<ng-template #modalLogin let-modal>
+  <button type="button" (click)="modal.dismiss()" class="btn close" aria-label="close">
+
+    <span>&times;</span>
+  </button>
+
+
+  <app-login></app-login>
+
+</ng-template>
+
+
+<!-------------------BANNER---------------------->
 <div class="card mat-card" id="first-card">
-    <div id="profile-background"><img id="info-back-img" src="../../../assets/img/banner7.jpg"></div>
-    <div id="info" style="padding: 16px">
-      <div id="info-img">
-        <img id="info-user-img" class="profile-image" src="../../../assets/img/avatar1.jpg">
-        <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen" onclick="showEditProfileModal()"></i></a></div>
-      </div>
-      <div id="info-data">
-        <div>
-          <h1 id="info-name">Rodrigo Amoedo Cigarreta</h1>
-          <div><span id="info-position">Full Stack Junior</span></div>
-          <div id="info-contact">
-            <span id="info-ubication"> Maipú Buenos Aires (Argentina) </span>
-            
-          </div>
+  <div id="profile-background">
+    <img id="info-back-img" src="../../../assets/img/banner7.jpg">
+  </div>
+  <div id="info" style="padding: 16px">
+    <div id="info-img">
+      <img id="info-user-img" class="profile-image" src="../../../assets/img/avatar1.jpg">
+      <div class="btn-edit">
+<!--------        <a href="#" class="btn-right">
+          <i class="fa fa-pen" onclick="showEditProfileModal()"></i></a>
+  ------->
         </div>
-        <ul id="info-details">
-          
-          <li><a href="#">
-            
+    </div>
+    <div id="info-data">
+      <div>
+        <h1 id="info-name">Rodrigo Amoedo Cigarreta</h1>
+        <div><span id="info-position">Full Stack Junior</span></div>
+        <div id="info-contact">
+          <span id="info-ubication"> Maipú Buenos Aires (Argentina) </span>
+
+        </div>
+      </div>
+      <ul id="info-details">
+
+        <li><a href="#">
+
             <h2 id="info-school-name">Full Stack Junior</h2>
           </a></li>
-        </ul>
-      </div>
-      <div id="info-actions">
-        <button type="button" class="btn btn-primary">Tengo interés en</button>
-        <button type="button" class="btn btn-light">Más</button>
-      </div>
+      </ul>
     </div>
+    <div id="info-actions">
+<!-------<button type="button" class="btn btn-primary">Tengo interés en</button>
+      <button type="button" class="btn btn-light">Más</button>
+--------->     
+    </div>
+  </div>
 </div>

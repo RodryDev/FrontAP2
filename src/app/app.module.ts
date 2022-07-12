@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { HeaderComponent } from './componentes/header/header.component';
 import { EducacionComponent } from './componentes/educacion/educacion.component';
 import { ExperienciaComponent } from './componentes/experiencia/experiencia.component';
@@ -19,6 +19,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './componentes/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { HomeComponent } from './componentes/home/home.component';
+
+
+
 
 
 @NgModule({
@@ -31,19 +37,24 @@ import { CookieService } from 'ngx-cookie-service';
     SkillsComponent,
     ProyectosComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
+    
   
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgbModule,
+    ModalModule.forRoot()
+    
+    
    
   ],
   providers: [CookieService],

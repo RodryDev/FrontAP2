@@ -1,10 +1,50 @@
+@import '~ngx-toastr/toastr.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html,body { height:100%; }
+*, *::after, *::before,
+dl, ol, ul, p, a, h1, h2, h3, h4, h5, h6 {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration:none !important;
+  list-style:none !important;
+}
+
+
+*, *:hover, a, a:hover, img, img:hover, i, i:hover, button, button:hover
+form, form:hover, ul, ul:hover, li, li:hover { transition:ease-in-out .2s; }
+
+
+
+
+
+body {
+background: url(assets/img/fondo.jpg) fixed;
+background-size: cover;
+}
+
+
+
+
+
+.card {
+
+    background: none !important;
+}
 
 
 .mat-card {
     border-radius: 32px;
     margin: 10px 10px;
     padding: 20px;
+    background-color: #00afef80 !important;
+  
+    /*background-color: #149bd1ad !important;*/
 }
+
+
+
 .mat-card#first-card {
     padding: 0;
 }

@@ -1,0 +1,126 @@
+header {
+   /* width: 100%;
+    background-color: #00afef80;
+    box-shadow:inset 0 -40px 20px -4px rgb(25, 25, 25),
+     0 -40px 20px -4px rgb(197, 113, 11);*/
+     width: 100%;
+     background-color: #00afef80;
+     box-shadow: 0px 2px 12px 12px rgba(0,0,0,0.62) inset;
+     -webkit-box-shadow: 0px 2px 12px 12px rgba(0,0,0,0.62) inset;
+     -moz-box-shadow: 0px 2px 12px 12px rgba(0,0,0,0.62) inset;
+
+
+}
+
+#info-back-img {
+    border-radius: 32px 32px 0 0;
+}
+
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.mat-card {
+    border-radius: 32px;
+    margin: 10px 10px;
+    padding: 20px;
+    border: 0;
+    box-shadow: 0px 2px 12px 20px rgba(0,0,0,0.62) inset;
+    -webkit-box-shadow: 0px 2px 12px 20px rgba(0,0,0,0.62) inset;
+    -moz-box-shadow: 0px 2px 12px 20px rgba(0,0,0,0.62) inset;
+}
+
+
+
+.logoRedes {
+    display: flex;
+   
+}
+.logos, .redes, .menu, form {
+    display:flex;
+    justify-content: space-between;
+}
+.redes, form, .login {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.redes a, .redes i {
+
+color:#fff;
+font-size: 25px;
+width: 35px;
+
+}
+
+.redes i:hover {
+font-size: 28px;
+color:#0d0847
+}
+
+.menu, .redes ul, .logos ul {
+  display: flex;
+  align-items:center;
+justify-content: space-between;
+}
+.menu  {
+justify-content: space-evenly;
+
+}
+.menu  li a {
+color: #fff !important;
+
+}
+
+.menu a:hover {
+    font-size: 28px;
+    color:#ef0000;
+    transition: ease-in-out .01 ;
+    }
+    
+
+.logoAp {
+    width: 150px;
+}
+
+
+.login button {
+height: 40px; ;
+
+}
+
+@media (max-width : 480px) {
+   
+    .logoRedes {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }  
+
+.mat-card  tr {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-card  tr {
+    border-bottom-width: 0px !important;
+    
+
+}
+
+.table tr {
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    
+}
+
+}

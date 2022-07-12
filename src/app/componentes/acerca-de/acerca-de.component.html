@@ -1,10 +1,51 @@
 
- <div class="card mat-card">
+<div class="card mat-card">
     <div class="card-titles">
         <h2>Acerca de</h2>
-        <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen" onclick="showEditAboutModal()"></i></a></div>
-    </div>    
-    <div id="about">
-       
+        <div class="btn-edit">
+            <a href="#" class="btn-right">
+                <i class="fa fa-pen" 
+                *ngIf="ulogged != ''"
+                
+                
+                ></i></a>
+        </div>
     </div>
+    <div id="about">
+
+    </div>
+
+
+<!-------LISTA DE CAMPOS COMPLETOS-------->
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+
+
+            <ul>
+
+                <li class="acercaDe" *ngFor="let acercaDe of listAcercaDe">
+
+                    <div class="Acerca">
+
+<!----------CAMPOS DE LOS IMPUTS------------->
+<div class="datosEdu">
+    <p> {{acercaDe.AcercaDe}} </p>
+   
+</div>
+
+<!-----------ICONOS EDITAR Y BORRAR----------------->
+<div class="iconEdu">
+    <i (click)="editarAcercaDe(acercaDe)" class=" pencil fa-solid fa-pencil text-info"
+        *ngIf="ulogged != ''"></i>
+
+
+    <i (click)="borrarAcercaDe(acercaDe.id)" class=" trash fa-solid fa-trash text-danger"
+        *ngIf="ulogged != ''"></i>
+
+
+</div>
+
+
 </div>

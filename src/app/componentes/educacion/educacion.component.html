@@ -1,147 +1,202 @@
-<div  class="card mat-card"> 
+<div class="card mat-card">
     <div id="education">
-      <div class="card-titles">
-        <h2>Educación</h2>
-        <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-plus" onclick="showNewEduModal()"></i></a></div>
-      </div>
-      
+        <div class="card-titles">
+            <h2>Educación</h2>
+            <div class="btn-edit">
+                <a href="#" class="btn-right">
+                    <i class="fa fa-plus" 
+                    *ngIf="ulogged != ''"
+                     (click)="abrirFormulario(educacion)"></i></a></div>
+        </div>
+
     </div>
 
-</div>
 
 
+<!-------LISTA DE CAMPOS COMPLETOS-------->
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
 
 
-<!-------Formulario -------->
+                <ul>
 
-<div class="row mt-4" >
-    <div class="col-lg-6"> 
-  <div class="card">
-      <div class="card-body">
-  
-          <form [formGroup]="form" (ngSubmit)="agregarEducacion()">
+                    <li class="Educacion" *ngFor="let educacion of listEducacion">
+
+                        <div class="Edu">
+
+<!---------URL DE IMAGENES-------------->
+                            <div class="imgEdu">
+                                <a href="{{educacion.urlDiploma}}">
+                                    <img [src]="educacion.imgDiploma"></a>
+                            </div>
+<!----------CAMPOS DE LOS IMPUTS------------->
+                            <div class="datosEdu">
+                                <h1> {{educacion.tituloEducacion}} </h1>
+                                <h2> {{educacion.institucion}} </h2>
+                                <h3> {{educacion.fechaEducacion}} </h3>
+                                <h4> {{educacion.localidad}} </h4>
+                            </div>
+                        </div>
+<!-----------ICONOS EDITAR Y BORRAR----------------->
+                        <div class="iconEdu">
+                             
+
+                            <i 
+                            data-bs-target="#educacion"
+                            (click)="editarEducacion(educacion)"  
+                                class=" pencil fa-solid fa-pencil text-info"
+                                    *ngIf="ulogged != ''"></i>
+                          
 
 
-<!----tituloEducacion---->  
+                            <i (click)="borrarEducacion(educacion.id)"  class=" trash fa-solid fa-trash text-danger"
+                                *ngIf="ulogged != ''"></i>
 
-              <div class="input-group mb-3">
-                  <span class="input-group-text imput-group-lg-"> 
-                      <i  class="fa-solid fa-graduation-cap"
-                      [class.green-icon]="this.form.get ('tituloEducacion')?.valid"
-                      [class.red-icon]="this.form.get ('tituloEducacion')?.invalid && this.form.get ('tituloEducacion')?.touched"> </i>
-                      
-                  </span>
-                  <input formControlName="tituloEducacion" type="text" class="form-control" placeholder="tituloEducacion">
-              </div>
-              
-<!----urlDIploma---->  
 
-              <div class="input-group mb-3">
-                <span class="input-group-text imput-group-lg-"> 
-                    <i class="fa-solid fa-award"
-                    [class.green-icon]="this.form.get ('urlDiploma')?.valid"
-                    [class.red-icon]="this.form.get ('urlDiploma')?.invalid && this.form.get ('urlDiploma')?.touched"> </i>
-                    
-                </span>
-                <input formControlName="urlDiploma" type="text" class="form-control" placeholder="urlDiploma">
+                        </div>
+
+                    </li>
+                </ul>
             </div>
-            
- <!--imgDiploma  --> 
-
- <div class="input-group mb-3">
-    <span class="input-group-text imput-group-lg-"> 
-        <i class="fa-solid fa-award"
-        [class.green-icon]="this.form.get ('imgDiploma')?.valid"
-        [class.red-icon]="this.form.get ('imgDiploma')?.invalid && this.form.get ('imgDiploma')?.touched"> </i>
-        
-    </span>
-    <input formControlName="imgDiploma" type="text" class="form-control" placeholder="imgDiploma">
-</div>   
-
-<!--institucion-->
-
-            <div class="input-group mb-3">
-                <span class="input-group-text imput-group-lg-"> 
-                    <i class="fa-solid fa-building-columns"
-                    [class.green-icon]="this.form.get ('institucion')?.valid"
-                    [class.red-icon]="this.form.get ('institucion')?.invalid && this.form.get ('institucion')?.touched"> </i>
-                    
-                </span>
-                <input formControlName="institucion" type="text" class="form-control" placeholder="institucion">
-            </div>
-            
-
-<!--fechaEducacion-->
-
-            <div class="input-group mb-3">
-                <span class="input-group-text imput-group-lg-"> 
-                    <i class="fa-solid fa-calendar-days"
-                    [class.green-icon]="this.form.get ('fechaEducacion')?.valid"
-                    [class.red-icon]="this.form.get ('fechaEducacion')?.invalid && this.form.get ('fechaEducacion')?.touched"> </i>
-                    
-                </span>
-                <input formControlName="fechaEducacion" type="text" class="form-control" placeholder="fechaEducacion">
-            </div>
-            
-<!---localidad-->
-
-            <div class="input-group mb-3">
-                <span class="input-group-text imput-group-lg-"> 
-                    <i class="fa-solid fa-location-dot"
-                    [class.green-icon]="this.form.get ('localidad')?.valid"
-                    [class.red-icon]="this.form.get ('localidad')?.invalid && this.form.get ('localidad')?.touched"> </i>
-                    
-                </span>
-                <input formControlName="localidad" type="text" class="form-control" placeholder="localidad">
-            </div>
-            
-
-            
-           
-            
- <!---Boton submit-->             
-              <div  class="d-grid gap-2">
-                  <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg"><i class="fa-solid fa-database"></i>
-                      &nbsp; Aceptar</button>
-              </div>
-
-
-          </form>
-
-      </div>
-  </div>
-
-
-</div>
-  <div class="col-lg-6">
-    <div class="card">
-        <div class="card-body">
-            
-
-            <table class="table">
-                <tbody>
-                    <tr *ngFor="let educacion of listEducacion">
-                        <td> {{educacion.tituloEducacion}} </td>
-                        <td> {{educacion.urlDiploma}} </td>
-                        <td> {{educacion.imgDiploma}} </td>
-                        <td> {{educacion.institucion}} </td>
-                        <td> {{educacion.fechaEducacion}} </td>
-                        <td> {{educacion.localidad}} </td>
-
-                        <td>
-                            <i class=" pencil fa-solid fa-pencil text-info"></i>
-                        </td>
-                        <td>
-                            <i (click)="borrarEducacion(educacion.id)" class=" trash fa-solid fa-trash text-danger"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
 
+<!---FORMULARIO MODAL-->
+
+<ng-template  id="educacionModal" #educacion let-modal>
+
+    <div class="modal-header">
+        <h4 class="modal-title">{{accion | uppercase}} EDUCACION</h4>
+<!------ICONO CERRAR------------>
+        <button type="button" *ngIf="ulogged != ''" (click)="modal.dismiss()" class="btn close" aria-label="close">
+
+            <span>&times;</span>
+        </button>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form [formGroup]="form" (ngSubmit)="guardarEducacion()">
+
+
+<!------------ IMPUT tituloEducacion------------>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text imput-group-lg-">
+                                <i class="fa-solid fa-graduation-cap"
+                                    [class.green-icon]="this.form.get ('tituloEducacion')?.valid"
+                                    [class.red-icon]="this.form.get ('tituloEducacion')?.invalid && this.form.get ('tituloEducacion')?.touched">
+                                </i>
+
+                            </span>
+                            <input formControlName="tituloEducacion" type="text" class="form-control"
+                                placeholder="tituloEducacion">
+                        </div>
+
+<!---------IMPUT urlDIploma--------->
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text imput-group-lg-">
+                                <i class="fa-solid fa-award" [class.green-icon]="this.form.get ('urlDiploma')?.valid"
+                                    [class.red-icon]="this.form.get ('urlDiploma')?.invalid && this.form.get ('urlDiploma')?.touched">
+                                </i>
+
+                            </span>
+                            <input formControlName="urlDiploma" type="url" class="form-control"
+                                placeholder="urlDiploma">
+                        </div>
+
+<!---------- IMPUT imgDiploma --------->
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text imput-group-lg-">
+                                <i class="fa-solid fa-award" [class.green-icon]="this.form.get ('imgDiploma')?.valid"
+                                    [class.red-icon]="this.form.get ('imgDiploma')?.invalid && this.form.get ('imgDiploma')?.touched">
+                                </i>
+
+                            </span>
+                            <input formControlName="imgDiploma" type="url" class="form-control"
+                                placeholder="imgDiploma">
+                        </div>
+
+<!--------- IMPUT institucion---------->
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text imput-group-lg-">
+                                <i class="fa-solid fa-building-columns"
+                                    [class.green-icon]="this.form.get ('institucion')?.valid"
+                                    [class.red-icon]="this.form.get ('institucion')?.invalid && this.form.get ('institucion')?.touched">
+                                </i>
+
+                            </span>
+                            <input formControlName="institucion" type="text" class="form-control"
+                                placeholder="institucion">
+                        </div>
+
+<!--------IMPUT fechaEducacion---------->
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text imput-group-lg-">
+                                <i class="fa-solid fa-calendar-days"
+                                    [class.green-icon]="this.form.get ('fechaEducacion')?.valid"
+                                    [class.red-icon]="this.form.get ('fechaEducacion')?.invalid && this.form.get ('fechaEducacion')?.touched">
+                                </i>
+
+                            </span>
+                            <input formControlName="fechaEducacion" type="date" class="form-control"
+                                placeholder="fechaEducacion">
+                        </div>
+
+<!-------------IMPUT localidad------------>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text imput-group-lg-">
+                                <i class="fa-solid fa-location-dot"
+                                    [class.green-icon]="this.form.get ('localidad')?.valid"
+                                    [class.red-icon]="this.form.get ('localidad')?.invalid && this.form.get ('localidad')?.touched">
+                                </i>
+
+                            </span>
+                            <input formControlName="localidad" type="text" class="form-control" placeholder="localidad">
+                        </div>
 
 
 
-</div>
+
+
+<!------------Boton submit------->
+                        <div class="d-grid gap-2">
+                            <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg"><i
+                                    class="fa-solid fa-database"></i>
+                                &nbsp; Aceptar</button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+</ng-template>
+
+
+
+

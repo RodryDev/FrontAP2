@@ -1,16 +1,81 @@
 
   <div class="card mat-card">
     <div class="card-titles">
-        <h2>Hard Skills & Soft Skills</h2>
-        <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-plus" onclick="showNewAptModal()"></i></a></div>
+      <h2>Hard Skills & Soft Skills</h2>
+      <div class="btn-edit">
+        <a href="#" class="btn-right">
+          <i class="fa fa-plus" 
+          *ngIf="ulogged != ''"
+          onclick="showNewAptModal()"></i></a>
       </div>
-      <ol class="items-list">
-        <li>
-          <div class="aptitude-info">
-           
+    </div>
+    <ol class="items-list">
+      <li>
+        <div class="aptitude-info">
+  
+        </div>
+      </li>
+    </ol>
+    <div clas="pokemon-card-container">
+  
+      <div class="pokemon-card">
+  
+        <div class="background-poke">
+  
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALgAAAESCAMAAAB5He/JAAAB1FBMVEX////zyxDHiiYAAADzDAwMDAzjQEz1zg6XJC/50BDGiCZcERH2zRD2zw7GiSb70hAAAAvz8/NQSjfNjifDhCfOlSPVoCDdqx3uxgDLkCTnuhjZtAD7CwzqxBLkthnTnSGxs7nWsQCsrKyFhYXQrhKLcQDDxcrapx7jvQCiawCUeQCrjAAAAA7CoADj4+NXNQC7u7suLi4hISFcXFxSUlLX19d7Zw+4lwBuWAB/ZgBSQQCggwBxdnuFiJGfoalucn2Xl5evjwBJPhDhAA5rWhKUhhFKABApAA47AA8RAA7FqhF8AAqcZwBXOBWNYhy0fSN7VhqgagBCQkI7Mgk2LwxYW2QmFwBQVGJvSwBPPimHVABVMgA/PDI/JwBydoFuQQB3UBpmQxdbTx5OS0BYUDRGPh42MR0sKiKJjZhIS1R9ayY0KQByaEKPjIBqZ1peXBBwagyQHg/AAAyeAAu1AAwsFAgzN0RKEQsbEAApABBSSCa+AAweAA4qJQ9BHAxkAAw4DQxMKw2FISpXGA04ABp0HSY8DQzRSkG6MT1WVA5ZAAyrMDZ1CyhTACA6PAAzABtZHSY7JBGvq56ommx0bVOyiVLEpoGqmIKTdk92WzaslkaThE5pEozhAAAXLElEQVR4nNWd/UMax7rHWYjZzGZgIIuK4ioqEISIpgZQQSMGPalBsDH2tDZvmrRNX06a3iRtzu2xMTm3bZLbnDZtz7333PvP3tldXvZlZhlgecn3l1YCy2cfnnnmmWde1uHorlJr510LXf5OGzR/3oU10GuMZhW96lL0Tq9BmlOygo3Va5Rm5JuuYb9VPj7l0mit1zTM8l3Qcrvme83DKp253x4XT+YM3Od9vUZiUuodA7cr12skJq0Zsd+Stjlt5naleg3FoAsE7regbfpM7i2r/7ufKAn7LYjiFG5XvwdDUrOUdaHXYA1k7C1rmuo1mbWo3H0eU3Tc3t3lQjqdLuz2f0ypc1+LzMbcqCIYjriivWazUpX7WlzCtJCrCaJ0r9msVImD6TACGmgFPLbSazgLJWXqgSyHDNRYaLGPg7hPxk4AYKLGCuz1ms5CeCwfJ2NzINLHTTPnWo4hIjbH8X1cUFl1ZQm+XTF4drXXeFSlXEGauXHT7OP8ap3nqdwwc7HXeFTtxWhuIhv8/WSv+WgKZcjRRG2Z4T/3mo+m5CLdv7HB1/t2kHzHwk84GOxbg6/OWoGjQr8a3NpRYKxvDX7BAhsbfKlfDR7KW0QUDkp9G8OXrRyFAx/0awxfCVq1TPdgv1ZorVume3iu14A07UlWDj46069pYXLJyuCS+GGvAWnaC1i1zJH9fh34WBrcPSj0bRHIyuDus+Jcv44frEIKPy4UQ70GpOmmxfBB8jv7t65s1Wk6xY/61VFwOksfZ444+9dRHNfpBh8R+jeiOKJxalo4Iog3+tZRLJom5r7Vr12Pw6JpYu6ZPq4qhxIUTxkRnEL/RkJ6r4m5xTf96+BUT5G5P+rXUY+saJboKTJ3PzdMWkyRuff7dfCg6ozZU/iAzF3s44DiICaG7lG/xynO9OvouKJQxugp7rN+Z/9zOy7GjAYffCu4jQmWWxKdoii+N91rrkby6VwcwqFSqXT74MCVW7m4EgqlfH3bAekyQxiORxKzW0GJ4wIBKTibjxTOXFzpz04opJTE+UoDhQAAWF1zAHk3QCgQjhzurfaf4S/GIERSJkwfc0KA4OzSmZU+KzKfR2iyULCsd8q/CECTS3f6yu53QSEdo84k6w0/u3izf/zdtRxkwVbtjgLxhT7xmL0EM7YiALP9gO67Omk5C0FGj+/12td9n1rNf9PRA4s9zhuvS/Q6kKXQ5Me9HGLsNQqCdEEU6d0c3D2r9QaNjR78pEeN1HqyisXoi/d6An7Rcu6EyejZXqyIs56sYiQPf9N98PYNjgVin3Y7pCcj7RscCwY+6TL5gh3YPSBP0SviTZN/2k3wCy13PSbxwS7GFkq5sDWB2e7F8zu2tMyqUNcWCkdplfxWyZe71ED1ZU4Iediey0Pps67kLdG8W2MtLhYOZ5hGnXSBxBfdGBct1A3ultLnvF6vSx55tkW+juIXOo2erIcUED7nHRhwudai83/OtkMOsmEEIxc7WwPYq30dH5S5B1wph8/nWGkrPecyPIcCS50c0vkidYMfKdw5zI3JXe2nXShWCHUMfLVWDwdZmXvANaWCf2ZDGgBR5kKb/hKiNZXPa76MjlTwaRXcu2tHtwThUqsd6fwXCz7fmclEiPiv0cla4JMUbkyelH18ynXOnm4JTX7cUnxJvosChWXAo8XQzbvm+ZAva2aFk1Vw13wyueYa8LbFW+8IIIo03UhX761+FoMckunQUhjFQ4Y3pDK1UkoNfEDZ1zYwcK4dV4FhzR9o8k5znh7NS5lwPWjgO3jfkEX8ReMOVVepyLvelo9LCe0eRLBoNJmlcvXphMoFYud1b0hq0yu0qyP3tpfrgrTu4yjPXjGaulcw2YzXk09rbwvkteBeb3uZFojoPw9iZxhzxlw2b5qylHdkaAYoqYjeKusacu9se0EFZA0VPQgKbHn6feQmXjBcJ78LANJsLYWBI2/N3ok2ozjMmKaoUYRpFUOO8lOjRPXjC4HgxlcPHmxxVUYIC15VR+F2ex8YNve8KH+TAXyVVnytDq1yu1//2yWsh5c3alZHk+lCOpKdBS0WnDXgwbT53lGYYWZ9dZLWulBBjqrTD8fGTsgaG3u0K1XfCxF2HuPGZAZM0yfg5G3CjwaCVxuCh+i7j+B1h2PtkYqtoJ+4HGtsYurlAAqEg9AwaOJnb4+SLhK70xDc1DjqFw3ejH5d55b1uCF3gDIdB93ZL/ZWPnMV9IMmkChNkKIDL11vEBZDeWJUUa+a/5uee+zSV41ao+Q9Ik0RwdjRNzLJlEsfiFC67Cdm9DBw3RrcsuiACpdO6MmfWsyCVz7yxNyh4RG915VU0uAFPTm6JgpDRP+DAWtvaVCe+lZv8hONTY4Q4R1o3XVeyd99Uzif1AQy6Zno9JMvBCVLcoulvVjurYcGZ9lsJQK6M17XVRV8HoMf1m4NZEtOp3CWfE0+ZrVg1NCfG4Ue6J1l7Gu9r7BFRHToHXAp3I5pnAl7a60A7RZFJ83kOMhbpFzRpQbJht5Zxh7p2gQMExIdAsG5yljPkXTJmUKmEhDg5MpVkW5yDszSxxbzDWZ1QEbvLJc2dDcaYJmjgDG1LpBKTbkU8Kp7okVHak4mp32ynniYXYXQ5eo/e3jCAhxE8o3JVfABdcSkBQ/gpGRlRnQKw7SWQ98O6ms0cQmDT8eoriJ7aZpDbrkvh1BOIsnXOKcfNVVcBWRlqifY5B5qW0EFSkfks96PyRnap7FxcujG5rvpTFiSpOBsvPCY3CvoUviBWjxEZ2SC5EeyyemtnBYUGcaMm5p8xRgO+b+ePv3q8uU/YV3efPXqXYlEABK6UVPlK+GkWktZwZHFQ42y/CQlyf33huBg47sa+aUHhrdLfzut1SuyHcCRdtQUVinBUmVQf1WwMjnKkodEdxtbHHxfBR+7Yhxphf+kAz+9WSBlu1AtlFaaZuUbVU+RneUGdnN6x4YKRPBPGMAT1eTWZHA4e/m0gXxXImbYeJynjvaqlWkYrFXdUrdE/zidPEAcV7zDMNpFNyqDie+NVwfZTQP46VfvxjkkVzwg0myv5bn4ER7snauntUDjAqv7otMiS82ECOALDODujGLysadBE3hk8/S3x1iPHx9/WzP6Xwv5cHAyk9bl+gBJwZhmIIF7n7pyM8I4PbAQz066yZJuoGdjMveWeWBbuHz8w/NTsp7/cPy4ZvXNy954QjK+XTd0Q7o4d0FwWnw/yVkuMnDjIQU2+emw+cdB6yq1que/1tA3041mtmK6wrLvujBk4SyEyEId5usB//7okBSi0fEpnZ4f/6iCv2u1fVwWP6t33ORjYdQistw1g1tsbqwLbESIFkT/ccqgX48rBie8G/J8dQU0NqKhNJu6MWJxnM+kKduibv0yiDAgk2UCP/XDMdngEIHg1tZWmEMKH1gykqSenaU7C0ob22fSeiRR/yB5DPzaBH7qhx8JBoco+OD4ysOHD69sfrWlFOIXjeCO1PEovWGYT5ObYyqjEUtO+NUffvrpp5MnT754oSE/NhscSF9duTSm6tKVlzisoz9M4I6UaylISTBxgmswue8N24QfWidZPPzzyZrq7F7jTaKtV5c0mdqlxxJE983gmNy1npBMh/cpChhNfoE2cDIw5hNmD+S3np88aUY3GhxtXDFUC97nAHEHi3Kg83I2pj8uUb1IxGDyFdpY1SA3IfEzgJ88+Z8y988b+neCLSP32KWXaI0E7vCdV496TGckpTxZmywBKGsw+VrRIovX3nHaHPFN4Ar5u4afUNo0cMtp5hZtz1Dt8O8nhXgiMzspSXKJVcqvG0++Te2L9CikEQyb44/Ox1WdOvXaML+Pvrpk5Mb6x7SPLPM52t4nR17CCbLJOcEipdQCmH0FTprATz43vA0GjY6imvzTMxTd/5h2gqzhORR3xEEmk4OIqXAIg2bwXwweBR6QDH7i0QaiilumkOuPd84J/kaJhUpJ8BXutZH7xYYxFH5PMLipzmH4TJ4Mrq/3h4pOcsHUdDmzr6BfjeDXjO+JkTzlxInvtqxCApAKRHJdfiMPnFi4OWCOK+jQwP3a+BZorJtWfbzBTgu0dUQA18fQM6JVXUPDYJ4iAw/03D+b5g95CvizRpkGRAmvCVx/OOi0YDXI1mIemnKnrVO6KG4cTFPBLV28+nUwa0LXVeTmi06rQXZdqGB+Tds6X7wkTEaQo+FTYuWIgP5ED67rtnxzoocpIkLzfkL04IUlN04VjLMaisHNPw0FHWTW6b5yQXT6SbN2JknmyUXpl1qf+YBcOCTE8bFNpgCsyI2CEY3Zk3pfEQXirJ2Z3PQK2PpFsfmLXykFZxg2+crYlaZW/eFcZStdBZ8y+IqTrRMiCMQeHL9+vb3B0VjQS+Pc3SNWR6mJRyB8LSeX2PUn5SyITjYvJwnKCzBoAxdFP+qnY74zBSeWb5GHy8m1Bf0aIBxXGANLK+KDl09oxj8PD8WRQNPfhb50kPQMm9yiOtCmoLT+8ERlxDl2pSQ6BWG0yd/XnSEXm3O4D/JTZ2LaFkSZ9acPHz169PDpF9cE0Sl/WXPkgHIKFM5X6PONdkgexbj54D82UGx52y9/2WAzHwdx2sq+6/KsnUX1Tq9WmgNEUrogIfzfraMDbHXB2cTGUHKJXNZUUf79GEMiPzHebAgCKFwoVJaEQJT37oiix898FXMdqyafPJ3BGhL5cf+ExbndBGopfm1JqpepAB/xFnHfwTYOwPmOxfqy3IxscouCqY7cLzjH3Wz1GEydXV/OGI7fR1JhG7vLIMeU3B3SuZXpRqeHLb3l+LOC0z8yzltneBAA3OHFd5cTxEc0hHfLoseqtly7DiUUVk1exianT04bhMOnx+8clmhmx4bmwon0+m56FpKXNnI8iNwWWeIisVqn8XLZ5PT1AIYvxSbH6IJ/UGY3wwcT6UI6nglCZLXED4WXyyJuLtbfZaqkm0zul8HZskSOk9+ssjuHxiUO08vlsuo9QF5ZHdposMC70yVRGAlYvi/Q6Jwc1eR+phUoHD9cIZfZBb9/ZGJoGOvsIFNeXxfKbHuclgmAqb5M8XKPyObl7hGPUyNML8g3wBiW6gKxa9hd6HMRlqGwavIbipcz9p+S32mQxz/BFN0MZODljkhPANDnDbkdjntyLMf5LVP1lpcP9NJhjzSb8lXZ4tsiLQEwTs5RpJicteeHkkeoYeM22nQaUCfPvJHtRfo8acaFoCl5URpzZs5zQ34/9mssYWKUrSOlkIffF4gJgLqIiEFPFJMLFvN2evTAONZobLQF39YDxo78IikBYD3qTMnL5ZyF+aCdZpItq+twOLgIxgTANO9D157qtoIdRx40Jcjh1MWQAMAY+9mJqWeKyVsf87dOzq/jfsQ/ofmtmUJhFdxVUp2FbUbLVnJuF3cNmgQAhkPs4NHiDTUqMya4tpJL7yv9QbU7YAyFqkJFf0kh7+TImUoefKOkS2pQA4lm9huuvieqPYq/+xaXV18dKORKAgCbOj1xpVzh7r6Py0JppYnJCQCIN3XgQE4Nh/7uRxVV4JqgJj7jUnPHyO45BQEPDtgWJnRAMPZGVJxV/FdT3I47aHxocKLFNM8OoeybUlkUxWJzZ2okFxFvVy/eogDMuD67M9dwB5MB3LZDa8xiziIQ7niaPQnEYiNWu4KWU8naN6LF5o9eudfSyXpMcmfZGg6M7T5p/uSVhRYmORhl2J5spWDzpwu0MjvDJhhkP9WMoSJhUIPtTO2I39phnoSAwWbPFggxrVdtSTBTYh4RgnCzhzxbP5ioLbnzJbl6wmIYmGnaxxvv9GhZIFHEyZOHpU+GwVCT3IzrbFsDjyt5p3+Iweio2WPM2ZZktwgeURNmwTPcYE8iRE2fWrbXwRwcpau1RoxuNZUBg4WmXZyyRtwe8MV6kVQQLNBBvOkTYuw+NE0P/lJbIZUdhpKEAvYiUFU32Wr6LYKv7wiiFt0/MU5A54HlFBtZHQyG8pl1pe3tkiCKYh3dPzTKu3mowefDkeafoGq977pt8AI2eGn7xu2iDC/W2EcmhsdjPMCS+dFhC0fyrXQupeWUowPkkaRYLh1sH+yUyh6xKvyivxyPKPOKsJUHUXTUU2pxXH7ehBPTf7OwkLt//+6PB7cPbrj2VkJJXzS3mGk+ouDM0M6TLwng8ZKmbYp+Uv7ni84TXm2km62uJmMTTrK08bBs38l1nex9OHnn5442GpbX7OJO5Ttbc4PB250Bpx0mZJukAy24fQ95ZR/Ktiiw3RHwqOUDwe0QWu8I+P3ONk0ZvKADn2rMxCJfB8c+FYGIZvJf3A/ZA862j7YtwXy5zj1n18nMf3TcUzg4We06xbJtzzZIdra7r6gSD8V9+x7ptdLZ7l4VUrpO0XOjlYSEog5396pAGoOLxQs2HoId7VxVXAsel58kaeuTDTve3SuCmfLMdXsPYrbhsRYs4MFnNj9ob7XROWl2kdt9rH7nu3tV4Dd7uTtZ6tSD/24veBe6+wr4hr3gXejuVcGMrc8x6E53r4AHbX10RFe6e1UBW3ufL7vlKThb+YuN3F0YQtQE0jaCdydPqYBTtyG1IPqJu/aLcWkym1a6uabTdEZKG+rkhJVJDfaXNKXpboKbTzxqXUwnk9klmLfvmS43u7puuYnlyY0U6lIyrqqp5bINwDs5uWkSiNsG7uvOuK0id8K+LuhD2MVlhnDWPvAVodVns7YCHrYvrKRuCU3u2G4HfNLGlPyO6B/s1mJaOy0uH5nhkdG74TDuYTsrQndEZTvs2VHOrWzKhOrOTLrUf22Fe3TGRm5HdF+srghQNmUqGtJqsC75T/zPyoarWEySn1eAxXYf7mHhn3aCO3IzlZK7uivTLE9dlVf8Ncm7l0cGzw6Pqtto6Tfglgb9os01oevO9uRRdtH6nYNDw8o2YCO+7FmjQ36PU7D5QYu+D9skr96Awi8vQZEkjldcyO3mpNHxsxOC/NOI/2Uvt3JsrNiYqyl8GXQENwqn/L9CZQtdB55seaFoH3n9FrA0f4r/bT+3wzE15+kAulaivSGlIt/K7e2DcifRxXInHoGam/OLolAqlRsDtMo904HnWc6/USO52DmLi2X7uVML+2RikfAy6TUW7n/a7ifJi0tnB/2Cx/xl5R3sOmVB+R2UznIGq1gszviF2tI7Rgm2xxPfmiuMeDc37BRM3yZ6iqWdg+03V3O56ZW1tdWp0HxU0dTa9P27c7c+2C/OsNyC6Czb/qRZ3zfL6mpuHidAZqPLixnFfdq3JlPR0FouJ9/DfvG9Mu0eygcHO3Y/DHrelUAQqEfT8ZKT4C6iWGTYaOFLRkOrK7mFD+cOFPfyaJq5R76jGTsr43i46QoiFMvOqpkQ5DxGcoy93dSSgdX3yuVSqbRze8cQWMUdG73l5iJAUiFd25XNj/r11OVb50PNXVI+x4/sMOKMbRntxQRCkfUg9pUquXtQqFM799/sNe+aoVvUZir+jz0RMZRFsfU8QmgynqiseIfjggotCvv/mm6tQYXmqBFGLNqyUuUQhXclxCfWI5rnPfgxtVD8YHqq9W4ueWeGQi4IM3asQkiHCwhl1/PVk7egfKzVYHHn/lq7zWhqjpDc4yR9Yng0dth+G43uYlfJIPXZSQAGwpn//f23qC0JhW/llhFdPg6MhxwE66F2r55clI4gAgBI4YRtyFX5pj/Qonv8w5WyDUTLoXYvnrp3f3nx89/XQqlO5Mm+tdszta0Qg9WjMOEkaGVjb5c1dbeooNfPPIFcoBCuPrK0nxW9jz1GrD0PMjCLPbOQfxvIHb6pu/tnUbXMEkjPIpROU5951l9KTcs7ZVR2FCkAlF0GNq8q65iiuaVZoJx5iGZxr5fINr+frWeK5tL5AAI8kK4F0PLy2wOOlVr9IzIbwE6O7FyM0CVFV3/7v3fS7Uzp/z/ZWTiq18bywQAAAABJRU5ErkJggg=="
+            class="poke-image">
+        </div>
+  
+        <div class="content-poke">
+          <h1 class="pokemon-name">Pikachu</h1>
+  
+          <span class="pokemon-type">Electrico</span>
+  
+          <div class="pokemon-stats">
+            <p>Power: 74</p>
+            <p>Damage: 78</p>
+            <p>Attaks: Thunder Bolt</p>
+            <p>Friendly: 78</p>
           </div>
-        </li>
-        
-
-      </ol>
-</div>
+          <h1 class="pokemon-logo">Pokemon Cards</h1>
+  
+        </div>
+      </div>
+  
+  
+    </div>
+  
+    <!-- <ngb-progressbar [value]="50" type="succes" 
+   [showValue]="true"
+   [striped]="true"
+    [max]="200">
+  </ngb-progressbar>
+  <ngb-progressbar [value]="150" type="dark"
+    [showValue]="true"
+    
+     [max]="500">
+  </ngb-progressbar>
+  <ngb-progressbar [value]="110" type="danger
+  "  [showValue]="true"
+   [max]="300"
+   [animated]="true"
+   [striped]="true"
+   >
+  
+  
+   
+  </ngb-progressbar>
+  
+  
+  <ngb-datepicker></ngb-datepicker> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>

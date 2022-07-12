@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-
+accion = "salir"
   form:FormGroup;
 //variables que van a hacer 1 a 1 con los inputs del login
 email:String = "";
@@ -22,16 +22,12 @@ password:String = "";
 
 loginerror:String = "";
 
-
-
-
-
-
-
-
-
-
-  constructor(private loginServ:LoginService,private router:Router,private rout:ActivatedRoute, private formBuilder:FormBuilder ) { 
+  constructor(private loginServ:LoginService,
+    private router:Router,
+    private rout:ActivatedRoute, 
+    private formBuilder:FormBuilder,
+    public modal: NgbModal
+    ) { 
 
 
     this.form=this.formBuilder.group(
@@ -60,10 +56,10 @@ login(){
     
     else {
       this.loginerror = "";
-      this.loginServ .setToken(data.id);
+      this.loginServ.setToken(data.id);
 
-      //me redirecciona a la pagina productos
-      this.router.navigate(['header'])
+      //me redirecciona al header
+     // this.router.navigate(['header'])
     }
 
   });
@@ -74,6 +70,8 @@ login(){
 
 
   ngOnInit(): void {
+    
+    
   }
 
   get Username()
