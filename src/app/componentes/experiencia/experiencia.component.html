@@ -1,190 +1,174 @@
 <div class="card mat-card">
-    <div id="education">
-        <div class="card-titles">
-            <h2>Experiencia</h2>
-            <div class="btn-edit"><a href="#" class="btn-right">
-                <i class="fa fa-plus"                
-                *ngIf="ulogged != ''"
-                (click)="abrirFormulario(experiencia)"></i></a></div>
-        </div>
-
+  <div id="education">
+    <div class="card-titles">
+      <h2>Experiencia</h2>
+      <div class="btn-edit">
+        <a href="#" class="btn-right">
+          <i class="fa fa-plus" *ngIf="ulogged != ''" (click)="abrirFormulario(experienciaModal)"></i></a>
+      </div>
     </div>
+  </div>
 
+  <!-------LISTA DE CAMPOS COMPLETOS-------->
 
-
-<!-------LISTA DE CAMPOS COMPLETOS-------->
-
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-
-                <ul>
-
-                    <li class="Experiencia" *ngFor="let experiencia of listExperiencia">
-
-                        <div class="Exp">
-
-<!---------URL DE IMAGENES-------------->                     
-                            <div class="imgExp">
-                                <a href="{{experiencia.urlEmpresa}}">
-                                    <img [src]="experiencia.imgEmpresa"></a>
-                            </div>
-<!----------CAMPOS DE LOS IMPUTS------------->
-                            <div class="datosExp">
-                                <h1> {{experiencia.nombreEmpresa}} </h1>
-                                <h2> {{experiencia.puesto}} </h2>
-                                <h3> {{experiencia.fechaExperiencia}} </h3>
-                                <h4> {{experiencia.localidadEmpresa}} </h4>
-                            </div>
-
-                        </div>
-<!-----------ICONOS EDITAR Y BORRAR----------------->
-                            <div class="iconExp">
-                                <i (click)="editarExperiencia(experiencia)" class=" pencil fa-solid fa-pencil text-info"
-                                    *ngIf="ulogged != ''"></i>
-
-                                <i (click)="borrarExperiencia(experiencia.id)"
-                                    class=" trash fa-solid fa-trash text-danger" *ngIf="ulogged != ''"></i>
-
-                            </div>
-
-                    </li>
-                </ul>
+  <div class="col-lg-12 card card-body">
+    <ul>
+      <li class="Experiencia" *ngFor="let experiencia of listExperiencia">
+        <div class="Exp col-lg-12">
+          <!---------URL DE IMAGENES-------------->
+          <div class="imgExperiencia col-lg-2">
+            <a class="col-lg-2" href="{{ experiencia.urlEmpresa }}">
+              <img [src]="experiencia.imgEmpresa" /></a>
+          </div>
+          <!----------CAMPOS DE LOS IMPUTS------------->
+          <div class="iconPersona col-lg-9">
+            <div class="textoExperiencia">
+              <h2>{{ experiencia.nombreEmpresa }}</h2>
+              <h3>{{ experiencia.puesto }}</h3>
+              <h6>{{ experiencia.fechaInicio }} / {{ experiencia.fechaFinal }}</h6>
+              <h6>{{ experiencia.localidadEmpresa }}</h6>
             </div>
+          </div>
+
+          <!-----------ICONOS EDITAR Y BORRAR----------------->
+
+          <div class="iconExp col-lg-1">
+            <i (click)="editarExperiencia(experiencia, experienciaModal)" class="pencil fa-solid fa-pencil text-info"
+              *ngIf="ulogged != ''"></i>
+
+
+            <i (click)="borrarExperiencia(experiencia.id)" class="trash fa-solid fa-trash text-danger"
+              *ngIf="ulogged != ''"></i>
+          </div>
         </div>
-    </div>
-</div>    
-
-
+      </li>
+    </ul>
+  </div>
+</div>
 
 <!---FORMULARIO MODAL-->
 
-<ng-template #experiencia let-modal>
+<ng-template #experienciaModal let-modal class="formularioExperiencia">
+  <div class="modal-header">
+    <h6 class="modal-title">{{ accion | uppercase }} Experiencia</h6>
+    <!------ICONO CERRAR------------>
+    <button type="button" *ngIf="ulogged != ''" (click)="modal.dismiss()" class="btn close" aria-label="close">
+      <span>&times;</span>
+    </button>
+  </div>
 
-    <div class="modal-header">
-        <h4 class="modal-title">{{accion | uppercase}} Experiencia</h4>
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="guardarExperiencia()">
+            <!------------ IMPUT nombreEmpresa------------>
 
-<!------ICONO CERRAR------------>
-        <button type="button" *ngIf="ulogged != ''" (click)="modal.dismiss()" class="btn close" aria-label="close">
-
-            <span>&times;</span>
-        </button>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-
-                    <form [formGroup]="form" (ngSubmit)="guardarExperiencia()">
-
-<!--------IMPUT nombreEmpresa---------->
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text imput-group-lg-">
-                                <i class="fa-solid fa-graduation-cap"
-                                    [class.green-icon]="this.form.get ('nombreEmpresa')?.valid"
-                                    [class.red-icon]="this.form.get ('nombreEmpresa')?.invalid && this.form.get ('nombreEmpresa')?.touched">
-                                </i>
-
-                            </span>
-                            <input formControlName="nombreEmpresa" type="text" class="form-control"
-                                placeholder="nombreEmpresa">
-                        </div>
-
-<!-------------IMPUT urlEmpresa---------------------->
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text imput-group-lg-">
-                                <i class="fa-solid fa-award" [class.green-icon]="this.form.get ('urlEmpresa')?.valid"
-                                    [class.red-icon]="this.form.get ('urlEmpresa')?.invalid && this.form.get ('urlEmpresa')?.touched">
-                                </i>
-
-                            </span>
-                            <input formControlName="urlEmpresa" type="text" class="form-control"
-                                placeholder="urlEmpresa">
-                        </div>
-
-<!----------------IMPUT imgEmpresa-------------->
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text imput-group-lg-">
-                                <i class="fa-solid fa-award" [class.green-icon]="this.form.get ('imgEmpresa')?.valid"
-                                    [class.red-icon]="this.form.get ('imgEmpresa')?.invalid && this.form.get ('imgEmpresa')?.touched">
-                                </i>
-
-                            </span>
-                            <input formControlName="imgEmpresa" type="text" class="form-control"
-                                placeholder="imgEmpresa">
-                        </div>
-
-<!------------ IMPUT  puesto------------->
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text imput-group-lg-">
-                                <i class="fa-solid fa-building-columns"
-                                    [class.green-icon]="this.form.get ('puesto')?.valid"
-                                    [class.red-icon]="this.form.get ('puesto')?.invalid && this.form.get ('puesto')?.touched">
-                                </i>
-
-                            </span>
-                            <input formControlName="puesto" type="text" class="form-control"
-                                placeholder="puesto">
-                        </div>
-
-<!--------------IMPUT fechaExperiencia----------------->
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text imput-group-lg-">
-                                <i class="fa-solid fa-calendar-days"
-                                    [class.green-icon]="this.form.get ('fechaExperiencia')?.valid"
-                                    [class.red-icon]="this.form.get ('fechaExperiencia')?.invalid && this.form.get ('fechaExperiencia')?.touched">
-                                </i>
-
-                            </span>
-                            <input formControlName="fechaExperiencia" type="date" class="form-control"
-                                placeholder="fechaExperiencia">
-                        </div>
-
-<!-----------IMPUT localidadEmpresa-------------->
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text imput-group-lg-">
-                                <i class="fa-solid fa-location-dot"
-                                    [class.green-icon]="this.form.get ('localidadEmpresa')?.valid"
-                                    [class.red-icon]="this.form.get ('localidadEmpresa')?.invalid && this.form.get ('localidadEmpresa')?.touched">
-                                </i>
-
-                            </span>
-                            <input formControlName="localidadEmpresa" type="text" class="form-control" placeholder="localidadEmpresa">
-                        </div>
-
-
-
-
-<!-----------Boton submit----------->
-                        <div class="d-grid gap-2">
-                            <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg"><i
-                                    class="fa-solid fa-database"></i>
-                                &nbsp; Aceptar</button>
-                        </div>
-
-
-                    </form>
-
-                </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-graduation-cap" [class.green-icon]="this.form.get('nombreEmpresa')?.valid"
+                  [class.red-icon]="
+                      this.form.get('nombreEmpresa')?.invalid &&
+                      this.form.get('nombreEmpresa')?.touched
+                    ">
+                </i>
+              </span>
+              <input formControlName="nombreEmpresa" type="text" class="form-control"
+                placeholder="Nombre de la Empresa" />
             </div>
 
+            <!---------IMPUT urlEmpresa--------->
 
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('urlEmpresa')?.valid" [class.red-icon]="
+                      this.form.get('urlEmpresa')?.invalid &&
+                      this.form.get('urlEmpresa')?.touched
+                    ">
+                </i>
+              </span>
+              <input formControlName="urlEmpresa" type="url" class="form-control" placeholder="Url Empresa" />
+            </div>
+
+            <!---------- IMPUT imgEmpresa --------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('imgEmpresa')?.valid" [class.red-icon]="
+                      this.form.get('imgEmpresa')?.invalid &&
+                      this.form.get('imgEmpresa')?.touched
+                    ">
+                </i>
+              </span>
+              <input formControlName="imgEmpresa" type="url" class="form-control" placeholder="Imagen Empresa" />
+            </div>
+
+            <!--------- IMPUT puesto---------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-building-columns" [class.green-icon]="this.form.get('puesto')?.valid"
+                  [class.red-icon]="
+                      this.form.get('puesto')?.invalid &&
+                      this.form.get('puesto')?.touched
+                    ">
+                </i>
+              </span>
+              <input formControlName="puesto" type="text" class="form-control" placeholder="Puesto" />
+            </div>
+
+            <!--------IMPUT fecha INICIO---------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-calendar-days" [class.green-icon]="this.form.get('fechaInicio')?.valid"
+                  [class.red-icon]="
+                      this.form.get('fechaInicio')?.invalid &&
+                      this.form.get('fechaInicio')?.touched
+                    ">
+                </i>
+              </span>
+              <input formControlName="fechaInicio" type="text" class="form-control" placeholder="Fecha de Inicio"
+                onfocus="(this.type='date')" />
+            </div>
+
+            <!--------IMPUT fecha FINAL---------->
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-calendar-days" [class.green-icon]="this.form.get('fechaFinal')?.valid"
+                  [class.red-icon]="
+                      this.form.get('fechaFinal')?.invalid &&
+                      this.form.get('fechaFinal')?.touched
+                    ">
+                </i>
+              </span>
+              <input formControlName="fechaFinal" type="text" class="form-control" placeholder="Fecha de Finalizacion"
+                onfocus="(this.type='date')" />
+            </div>
+
+            <!-------------IMPUT LocalidocalidadEmpresa------------>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-location-dot" [class.green-icon]="this.form.get('localidadEmpresa')?.valid"
+                  [class.red-icon]="
+                      this.form.get('localidadEmpresa')?.invalid &&
+                      this.form.get('localidadEmpresa')?.touched
+                    ">
+                </i>
+              </span>
+              <input formControlName="localidadEmpresa" type="text" class="form-control" placeholder="Localidad" />
+            </div>
+
+            <!------------Boton submit------->
+            <div class="d-grid gap-2">
+              <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                <i class="fa-solid fa-database"></i> &nbsp; Aceptar
+              </button>
+            </div>
+          </form>
         </div>
-
-
-
-
+      </div>
     </div>
-
-
-
-
-
+  </div>
 </ng-template>

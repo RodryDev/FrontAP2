@@ -1,21 +1,140 @@
 <div class="card mat-card">
+  <div id="education">
     <div class="card-titles">
-        <h2>Proyectos</h2>
-        <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-plus" onclick="showNewAchModal()"></i></a></div>
+      <h2>Proyectos</h2>
+      <div class="btn-edit">
+        <a href="#" class="btn-right">
+          <i class="fa fa-plus" *ngIf="ulogged != ''" (click)="abrirFormulario(proyectoModal)"></i></a>
       </div>
-      <div class="achivements">
-        <h3>2</h3>
-        <div>
-          <div class="project-title">
-            <h3>Proyectos</h3>
+    </div>
+  </div>
+
+  <!-------LISTA DE CAMPOS COMPLETOS-------->
+
+  <div class="col-lg-12 card card-body">
+    <ul>
+      <li class="Proyectos" *ngFor="let proyectos of listProyectos">
+        <div class="Proyect col-lg-12">
+
+          <!---------URL DE IMAGENES-------------->
+          <div class="imgProyecto col-lg-2">
+            <a class="col-lg-2" href="{{ proyectos.urlproyecto }}">
+              <img [src]="proyectos.imgProyecto" /></a>
           </div>
-          <div>
-            <ul class="project-list">
-              <li> Argentina Programa</li>
-              <li> Argentina Programa</li>
-           
-            </ul>
+
+          <!----------CAMPOS DE LOS IMPUTS------------->
+          <div class="iconPersona col-lg-9">
+            <div class="textoProyectos">
+              <h2>{{ proyectos.tituloProyecto }}</h2>
+              <h6>{{ proyectos.descripcionProyecto }}</h6>
+            </div>
+          </div>
+
+          <!-----------ICONOS EDITAR Y BORRAR----------------->
+
+          <div class="iconExp col-lg-1">
+            <i (click)="editarProyectos(proyectos, proyectoModal)" class="pencil fa-solid fa-pencil text-info"
+              *ngIf="ulogged != ''"></i>
+
+
+            <i (click)="borrarProyectos(proyectos.id)" class="trash fa-solid fa-trash text-danger"
+              *ngIf="ulogged != ''"></i>
           </div>
         </div>
-      </div>
+      </li>
+    </ul>
+  </div>
 </div>
+
+<!---FORMULARIO MODAL-->
+
+<ng-template #proyectoModal let-modal class="formularioExperiencia">
+  <div class="modal-header">
+    <h6 class="modal-title">{{ accion | uppercase }} Proyectos</h6>
+    <!------ICONO CERRAR------------>
+    <button type="button" *ngIf="ulogged != ''" (click)="modal.dismiss()" class="btn close" aria-label="close">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="guardarProyectos()">
+            <!------------ IMPUT tituloProyecto------------>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-graduation-cap" [class.green-icon]="this.form.get('tituloProyecto')?.valid"
+                  [class.red-icon]="
+                    this.form.get('tituloProyecto')?.invalid &&
+                    this.form.get('tituloProyecto')?.touched
+                  ">
+                </i>
+              </span>
+              <input formControlName="tituloProyecto" type="text" class="form-control"
+                placeholder="Titulo del Proyecto" />
+            </div>
+
+            <!---------IMPUT descripcionProyecto-------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('descripcionProyecto')?.valid"
+                  [class.red-icon]="
+                    this.form.get('descripcionProyecto')?.invalid &&
+                    this.form.get('descripcionProyecto')?.touched
+                  ">
+                </i>
+              </span>
+              <input formControlName="descripcionProyecto" type="url" class="form-control"
+                placeholder="Descripcion del Proyecto" />
+            </div>
+
+
+            <!---------IMPUT urlProyecto--------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('urlProyecto')?.valid" [class.red-icon]="
+        this.form.get('urlProyecto')?.invalid &&
+        this.form.get('urlProyecto')?.touched
+      ">
+                </i>
+              </span>
+              <input formControlName="urlProyecto" type="url" class="form-control" placeholder="Url Proyecto" />
+            </div>
+
+
+
+            <!---------- IMPUT imgProyecto --------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('imgProyecto')?.valid" [class.red-icon]="
+        this.form.get('imgProyecto')?.invalid &&
+        this.form.get('imgProyecto')?.touched
+      ">
+                </i>
+              </span>
+              <input formControlName="imgProyecto" type="url" class="form-control" placeholder="Imagen Proyecto" />
+            </div>
+
+
+
+
+
+
+            <!------------Boton submit------->
+            <div class="d-grid gap-2">
+              <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                <i class="fa-solid fa-database"></i> &nbsp; Aceptar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

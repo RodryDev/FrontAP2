@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './componentes/header/header.component';
 import { EducacionComponent } from './componentes/educacion/educacion.component';
-import { ExperienciaComponent } from './componentes/experiencia/experiencia.component';
-import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
+
+
 import { SkillsComponent } from './componentes/skills/skills.component';
 import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 import { FooterComponent } from './componentes/footer/footer.component';
@@ -20,9 +20,11 @@ import { LoginComponent } from './componentes/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { HomeComponent } from './componentes/home/home.component';
 
+import { HomeComponent } from './componentes/home/home.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ExperienciaComponent } from './componentes/experiencia/experiencia.component';
+import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
 
 
 
@@ -32,13 +34,15 @@ import { HomeComponent } from './componentes/home/home.component';
     AppComponent,
     HeaderComponent,
     EducacionComponent,
-    ExperienciaComponent,
-    AcercaDeComponent,
+   
+    
     SkillsComponent,
     ProyectosComponent,
     FooterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ExperienciaComponent,
+    AcercaDeComponent
     
   
 
@@ -52,7 +56,15 @@ import { HomeComponent } from './componentes/home/home.component';
     ToastrModule.forRoot(),
     FormsModule,
     NgbModule,
-    ModalModule.forRoot()
+    NgCircleProgressModule.forRoot({
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    })
+    
     
     
    

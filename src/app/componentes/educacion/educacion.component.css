@@ -1,48 +1,86 @@
-.pencil, .trash {
-    cursor:pointer;
-    }
+.mat-card {
     
-    .green-icon{
-    color:#198754
-    }
-    .red-icon{
-    color:#dc3545
-    }
+    margin: 10px 10px;
+    padding: 20px;
+    border: 0;
+    box-shadow: 0px 2px 12px 12px rgba(0,0,0,0.30);
+    -webkit-box-shadow: 0px 2px 12px 12px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 2px 12px 12px rgba(0,0,0,0.30);
+}
 
-    .mat-card {
-        border-radius: 32px;
-        margin: 10px 10px;
-        padding: 20px;
-        border: 0;
-        box-shadow: 0px 2px 12px 20px rgba(0,0,0,0.62) inset;
-        -webkit-box-shadow: 0px 2px 12px 20px rgba(0,0,0,0.62) inset;
-        -moz-box-shadow: 0px 2px 12px 20px rgba(0,0,0,0.62) inset;
-    }
+.pencil,
+.trash {
+    cursor: pointer;
+}
 
-    .Educacion {
-display: flex;
-flex-direction: column;
-    }
+.green-icon {
+    color: #198754
+}
 
-    .cajaEdu {
-        background-color: aliceblue;
+.red-icon {
+    color: #dc3545
+}
 
-    }
-    .imgEdu a img {
-        
-        border-radius: 4px !important;
-        padding: 5px !important;
-        width: 150px !important;
-    }
-    .datosEdu {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-content: space-between;
+
+.Educacion {
+    display: flex;
+}
+
+.Edu {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.imgEdu {
+    flex-direction: row;
+
+}
+
+.imgEdu a img {
+
+    border-radius: 4px !important;
+    padding: 5px !important;
+    width: 150px !important;
+}
+
+.datosEdu {
+
+    flex-direction: column;
+    align-items: center;
+
+
+
+}
+
+.modal-header {
+    display: flex;
+    align-content: space-between;
+}
+
+.textoEdu h2 {
+    font-size: 30px;
+
+}
+
+.textoEdu h3 {
+    font-size: 25px;
+
+}
+
+.textoEdu h6 {
+    font-size: 15px;
+
+}
+
+@media (max-width : 480px) {
+   
+    .Edu {
        
-
+        flex-direction: column;
     }
-    .modal-header {
-        display: flex; 
-        align-content: space-between;
+    .imgEdu {
+        flex-direction: column;
+    
     }
+    }  

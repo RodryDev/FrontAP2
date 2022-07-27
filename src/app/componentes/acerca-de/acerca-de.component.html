@@ -1,51 +1,109 @@
-
 <div class="card mat-card">
+  <div id="education">
     <div class="card-titles">
-        <h2>Acerca de</h2>
-        <div class="btn-edit">
-            <a href="#" class="btn-right">
-                <i class="fa fa-pen" 
-                *ngIf="ulogged != ''"
-                
-                
-                ></i></a>
+      <h2>Quien soy</h2>
+      <div class="btn-edit">
+        <a href="#" class="btn-right">
+          <i
+            class="fa fa-plus"
+            *ngIf="ulogged != ''"
+            (click)="abrirFormulario(QuienSoy)"
+          ></i
+        ></a>
+      </div>
+    </div>
+  </div>
+
+  <!-------LISTA DE CAMPOS COMPLETOS-------->
+
+  <div class="col-lg-12 card-body card">
+    <ul>
+      <li class="quien-soy" *ngFor="let about of listAbout">
+        <div class="persona col-lg-12">
+          <!----------CAMPOS DE LOS IMPUTS------------->
+          <div class="iconPersona col-lg-11">
+            <div class="textoPersona">
+              <h3>{{ about.datosPersonales }}</h3>
+            </div>
+          </div>
+
+          <!-----------ICONOS EDITAR Y BORRAR----------------->
+          <div class="iconPersona col-lg-1">
+            <i
+              (click)="editarAbout(about, QuienSoy)"
+              class="pencil fa-solid fa-pencil text-info"
+              *ngIf="ulogged != ''"
+            ></i>
+
+            <i
+              (click)="borrarAbout(about.id)"
+              class="trash fa-solid fa-trash text-danger"
+              *ngIf="ulogged != ''"
+            ></i>
+          </div>
         </div>
-    </div>
-    <div id="about">
+      </li>
+    </ul>
+  </div>
+</div>
 
-    </div>
+<!---FORMULARIO MODAL-->
 
+<ng-template #QuienSoy let-modal class="formularioPersona">
+  <div class="modal-header">
+    <h6 class="modal-title">{{ accion | uppercase }} Descripcion</h6>
+    <!------ICONO CERRAR------------>
+    <button
+      type="button"
+      *ngIf="ulogged != ''"
+      (click)="modal.dismiss()"
+      class="btn close"
+      aria-label="close"
+    >
+      <span>&times;</span>
+    </button>
+  </div>
 
-<!-------LISTA DE CAMPOS COMPLETOS-------->
-
-<div class="col-lg-12">
-    <div class="card">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <div class="card">
         <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="guardarAbout()">
+            <!-------------IMPUT quienSoy------------>
 
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i
+                  class="fa-solid fa-book-open"
+                  [class.green-icon]="this.form.get('datosPersonales')?.valid"
+                  [class.red-icon]="
+                    this.form.get('datosPersonales')?.invalid &&
+                    this.form.get('datosPersonales')?.touched
+                  "
+                >
+                </i>
+              </span>
+              <input
+                formControlName="datosPersonales"
+                type="text"
+                class="form-control"
+                placeholder="Descripcion"
+              />
+            </div>
 
-            <ul>
-
-                <li class="acercaDe" *ngFor="let acercaDe of listAcercaDe">
-
-                    <div class="Acerca">
-
-<!----------CAMPOS DE LOS IMPUTS------------->
-<div class="datosEdu">
-    <p> {{acercaDe.AcercaDe}} </p>
-   
-</div>
-
-<!-----------ICONOS EDITAR Y BORRAR----------------->
-<div class="iconEdu">
-    <i (click)="editarAcercaDe(acercaDe)" class=" pencil fa-solid fa-pencil text-info"
-        *ngIf="ulogged != ''"></i>
-
-
-    <i (click)="borrarAcercaDe(acercaDe.id)" class=" trash fa-solid fa-trash text-danger"
-        *ngIf="ulogged != ''"></i>
-
-
-</div>
-
-
-</div>
+            <!------------Boton submit------->
+            <div class="d-grid gap-2">
+              <button
+                [disabled]="this.form.invalid"
+                type="submit"
+                class="btn btn-success btn-lg"
+              >
+                <i class="fa-solid fa-database"></i> &nbsp; Aceptar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

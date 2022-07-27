@@ -42,7 +42,7 @@ export class ApiService  {
 ////Editar Persona///
 
  editarPersona(id:number, persona: any):Observable <any>{
-  return this.http.put(this.urlRoot + 'persona/' + id, persona);
+  return this.http.put(this.urlRoot + 'persona/editar/' + id, persona);
 
 }
 
@@ -79,7 +79,7 @@ return this.http.post(this.urlRoot + 'educacion/nueva',educacion);
 ////Editar Educacion///
 
 editarEducacion(id:number, educacion: any):Observable <any>{
-return this.http.put(this.urlRoot + 'educacion/editar' + id, educacion);
+return this.http.put(this.urlRoot + 'educacion/editar/' + id, educacion);
 
 }
 
@@ -117,9 +117,14 @@ return this.http.post(this.urlRoot + 'experiencia/nueva',experiencia);
 ////Editar Experiencia///
 
 editarExperiencia(id:number, experiencia: any):Observable <any>{
-return this.http.put(this.urlRoot + 'experiencia/' + id, experiencia);
+return this.http.put(this.urlRoot + 'experiencia/editar/' + id, experiencia);
 
 }
+
+
+
+
+
 
 ////Buscar Experiencia////
 
@@ -154,7 +159,7 @@ return this.http.post(this.urlRoot + 'proyectos/nueva',proyecto);
 ////Editar Proyectos///
 
 editarProyectos(id:number, proyecto: any):Observable <any>{
-return this.http.put(this.urlRoot + 'proyectos/' + id, proyecto);
+return this.http.put(this.urlRoot + 'proyectos/editar/' + id, proyecto);
 
 }
 
@@ -194,7 +199,7 @@ return this.http.post(this.urlRoot + 'habilidad/nueva',habilidad);
 ////Editar Habilidad///
 
 editarHabilidad(id:number, habilidad: any):Observable <any>{
-return this.http.put(this.urlRoot + 'habilidad/' + id, habilidad);
+return this.http.put(this.urlRoot + 'habilidad/editar/' + id, habilidad);
 
 }
 
@@ -214,27 +219,27 @@ return this.http.get(this.urlRoot + 'habilidad/'+ id);
 
 ///Listar ACERCA DE////
 
-getListAcercaDe():Observable <any>{
+getListAbout():Observable <any>{
   
   return this.http.get(this.urlRoot + 'acercaDe/listar');
 }
 /////Borrar ACERCA DE///
 
-borrarAcercaDe(id:number):Observable <any>{
+borrarAbout(id:number):Observable <any>{
 return this.http.delete(this.urlRoot + 'acercaDe/borrar/' + id);
 }
 
 ////Guardar ACERCA DE////
 
-guardarAcercaDe(acercaDe:any):Observable <any>{
+guardarAbout(acercaDe:any):Observable <any>{
 return this.http.post(this.urlRoot + 'acercaDe/nueva',acercaDe);
 }
 
 
 ////Editar ACERCA DE///
 
-editarAcercaDe(id:number, acercaDe: any):Observable <any>{
-return this.http.put(this.urlRoot + 'acercaDe/' + id, acercaDe);
+editarAbout(id:number, acercaDe: any):Observable <any>{
+return this.http.put(this.urlRoot + 'acercaDe/editar/' + id, acercaDe);
 
 }
 

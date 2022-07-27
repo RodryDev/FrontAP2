@@ -1,22 +1,21 @@
 <!---NAV BAR-->
 <header class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <!---------------NAV------->
 
   <nav class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-
+    <!------------LOGO AP------------->
     <div class="logoRedes col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
       <div class="logos col-xs-12 col-sm-12 col-md-12 col-lg-3">
         <ul>
-          <li> <img class="logoAp img-fluid" src="/assets/img/logoAp.png" alt="Argentina programa"></li>
-
+          <li>
+            <img class="logoAp img-fluid" src="/assets/img/logoAp.png" alt="Argentina programa" />
+          </li>
         </ul>
       </div>
 
-
       <!-----------MENU OPCIONES----------->
       <ul class="menu col-xs-12 col-sm-12 col-md-12 col-lg-5">
-        <li><a href="#quiensoy">Quién soy?</a></li>
+        <li><a href="#quienSoy">Quién soy?</a></li>
         <li><a href="#experiencia">Educación</a></li>
         <li><a href="#educacion">Experiencia</a></li>
         <li><a href="#habilidades">Skills</a></li>
@@ -26,83 +25,273 @@
       <!--------------REDES---------------------->
       <div class="redes col-xs-12 col-sm-12 col-md-12 col-lg-3">
         <ul>
-          <li> <a href="https://www.linkedin.com/in/rodrigo-amoedo-cigarreta-051708226/"><i
-                class="icono fa-brands fa-linkedin"></i></a></li>
-          <li> <a href="https://github.com/RodryDev"><i class="fa-brands fa-github"></i></a></li>
-          <li> <a href="https://www.instagram.com/ro.amoedo.cigarreta/"><i class="fa-brands fa-instagram"></i></a></li>
-          <li> <a href="https://www.facebook.com/Rocko.Cell/"><i class="fa-brands fa-facebook"></i></a></li>
-          <li> <a href="https://walink.co/5d664c"><i class="fa-brands fa-whatsapp"></i></a></li>
-          <li> <a
+          <li>
+            <a href="https://www.linkedin.com/in/rodrigo-amoedo-cigarreta-051708226/"><i
+                class="icono fa-brands fa-linkedin"></i></a>
+          </li>
+          <li>
+            <a href="https://github.com/RodryDev"><i class="fa-brands fa-github"></i></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/ro.amoedo.cigarreta/"><i class="fa-brands fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/Rocko.Cell/"><i class="fa-brands fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href="https://walink.co/5d664c"><i class="fa-brands fa-whatsapp"></i></a>
+          </li>
+          <li>
+            <a
               href="mailto:rodryam88@gmail.com?subject=Acordar%20una%20entrevista&body=Hola%20Rodrigo%20espero%20que%20se%20encuentre%20bien%2C%20le%20contacto%20por%20el%20siguiente%20motivo.....">
-              <i class="fas fa-envelope"></i></a></li>
-
+              <i class="fas fa-envelope"></i></a>
+          </li>
         </ul>
-
       </div>
 
+      <div class="login col-xs-12 col-sm-12 col-md-12 col-lg-1">
+        <button class="btn btn-outline-success" type="submit" *ngIf="ulogged == ''"
+          (click)="abrirFormulario(modalLogin)">
+          Login
+        </button>
 
-
-      <div class=" login col-xs-12 col-sm-12 col-md-12 col-lg-1">
-        <button class="btn btn-outline-success" type="submit"  *ngIf="ulogged == ''" (click)="abrirFormulario(modalLogin)">Login</button>
-
-        <button class="btn btn-outline-danger" *ngIf="ulogged != ''" type="close" (click)="salir()">Salir</button>
+        <button class="btn btn-outline-danger" *ngIf="ulogged != ''" type="close" (click)="salir()">
+          Salir
+        </button>
       </div>
-
-
     </div>
-
   </nav>
-
-
 </header>
 
-<ng-template #modalLogin let-modal>
-  <button type="button" (click)="modal.dismiss()" class="btn close" aria-label="close">
+<!------------MODAL LOGIN------------------>
 
+<ng-template #modalLogin let-modal>
+  <div class="btnCerrar"> 
+  <button type="button" (click)="modal.dismiss()" class="btn close" aria-label="close">
     <span>&times;</span>
   </button>
-
-
+</div>
   <app-login></app-login>
-
 </ng-template>
-
 
 <!-------------------BANNER---------------------->
 <div class="card mat-card" id="first-card">
+  <!-----IMAGEN BANNER---->
   <div id="profile-background">
-    <img id="info-back-img" src="../../../assets/img/banner7.jpg">
+    <img id="info-back-img" src="../../../assets/img/banner7.jpg" />
   </div>
+
+  <!---AVATAR----->
   <div id="info" style="padding: 16px">
     <div id="info-img">
-      <img id="info-user-img" class="profile-image" src="../../../assets/img/avatar1.jpg">
-      <div class="btn-edit">
-<!--------        <a href="#" class="btn-right">
-          <i class="fa fa-pen" onclick="showEditProfileModal()"></i></a>
-  ------->
-        </div>
+      <img id="info-user-img" class="profile-image" src="../../../assets/img/avatar1.jpg" />
     </div>
-    <div id="info-data">
-      <div>
-        <h1 id="info-name">Rodrigo Amoedo Cigarreta</h1>
-        <div><span id="info-position">Full Stack Junior</span></div>
-        <div id="info-contact">
-          <span id="info-ubication"> Maipú Buenos Aires (Argentina) </span>
 
-        </div>
+    <div>
+      <!------Boton Agregar------>
+      <div class="boton-editar">
+        <ul id="info-details">
+          <li>
+            <div class="btn-edit">
+              <a href="#" class="btn-right">
+                <i class="fa fa-plus agregar" *ngIf="ulogged != ''" (click)="abrirFormulario(QuienSoy)"></i></a>
+            </div>
+          </li>
+        </ul>
       </div>
-      <ul id="info-details">
+      <!-------LISTA DE CAMPOS COMPLETOS-------->
+      <div class="col-lg-12 card-body card">
+        <ul>
+          <li class="quien-soy" *ngFor="let persona of listPersona">
+            <div class="persona col-lg-12">
+              <!---------URL DE IMAGENES-------------->
+              <!-- <div class="imgPersona col-lg-2">
+                  <a class="col-lg-2" href="{{ persona.urlImg }}">
+                    <img [src]="persona.urlImg"
+                  /></a>
+                </div> -->
+              <!----------CAMPOS DE LOS IMPUTS------------->
+              <div class="iconPersona col-lg-11">
+                <div class="textoPersona">
+                  <h4>{{ persona.nombreUsuario }}</h4>
+                  <h4>{{ persona.nombre }}</h4>
+                  <h4>{{ persona.apellido }}</h4>
+                  <h6>{{ persona.email }}</h6>
+                  <h3>{{ persona.quienSoy }}</h3>
+                  <h3>{{ persona.urlPersona }}</h3>
+                  <h3>{{ persona.imgPersona }}</h3>
+                  <h5>{{ persona.ciudad }}</h5>
+                  <h5>{{ persona.provincia }}</h5>
+                  <h6>{{ persona.fechaNac }}</h6>
+                </div>
+              </div>
 
-        <li><a href="#">
+              <!-----------ICONOS EDITAR Y BORRAR----------------->
+              <div class="iconPersona col-lg-1">
+                <i (click)="editarPersona(persona, QuienSoy)" class="pencil fa-solid fa-pencil text-info"
+                  *ngIf="ulogged != ''"></i>
 
-            <h2 id="info-school-name">Full Stack Junior</h2>
-          </a></li>
-      </ul>
-    </div>
-    <div id="info-actions">
-<!-------<button type="button" class="btn btn-primary">Tengo interés en</button>
-      <button type="button" class="btn btn-light">Más</button>
---------->     
+                <i (click)="borrarPersona(persona.id)" class="trash fa-solid fa-trash text-danger"
+                  *ngIf="ulogged != ''"></i>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+  <div id="info-actions"></div>
 </div>
+
+<!------------MODAL---------------->
+
+<ng-template #QuienSoy let-modal class="formularioPersona">
+  <div class="modal-header">
+    <h6 class="modal-title">{{ accion | uppercase }} Datos Personales</h6>
+    <!------ICONO CERRAR------------>
+    <button type="button" *ngIf="ulogged != ''" (click)="modal.dismiss()" class="btn close" aria-label="close">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <form class="formAbout" [formGroup]="form" (ngSubmit)="guardarPersona()">
+            <!---------IMPUT nombre--------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('nombre')?.valid" [class.red-icon]="
+                    this.form.get('nombre')?.invalid &&
+                    this.form.get('nombre')?.touched
+                  ">
+                </i>
+              </span>
+              <input formControlName="nombre" type="url" class="form-control" placeholder="Nombre" />
+            </div>
+
+            <!---------IMPUT apellido--------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('apellido')?.valid" [class.red-icon]="
+                    this.form.get('apellido')?.invalid &&
+                    this.form.get('apellido')?.touched
+                  ">
+                </i>
+              </span>
+              <input formControlName="apellido" type="url" class="form-control" placeholder="Apellido" />
+            </div>
+            <!---------- IMPUT fechaNac --------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('fechaNac')?.valid" [class.red-icon]="
+                    this.form.get('fechaNac')?.invalid &&
+                    this.form.get('fechaNac')?.touched
+                  ">
+                </i>
+              </span>
+              <input formControlName="fechaNac" type="text" class="form-control" onfocus="(this.type='date')"
+                placeholder="Fecha de Nacimiento" />
+            </div>
+
+            <!---------- IMPUT email --------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-award" [class.green-icon]="this.form.get('email')?.valid" [class.red-icon]="
+                    this.form.get('email')?.invalid &&
+                    this.form.get('email')?.touched
+                  ">
+                </i>
+              </span>
+              <input formControlName="email" type="email" class="form-control" placeholder="Email" />
+            </div>
+            <!--------- IMPUT ciudad---------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-building-columns" [class.green-icon]="this.form.get('ciudad')?.valid"
+                  [class.red-icon]="
+                    this.form.get('ciudad')?.invalid &&
+                    this.form.get('ciudad')?.touched
+                  ">
+                </i>
+              </span>
+              <input formControlName="ciudad" type="text" class="form-control" placeholder="Ciudad" />
+            </div>
+
+            <!--------IMPUT  provincia---------->
+
+            <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i class="fa-solid fa-calendar-days" [class.green-icon]="this.form.get('provincia')?.valid"
+                  [class.red-icon]="
+                    this.form.get('provincia')?.invalid &&
+                    this.form.get('provincia')?.touched
+                  ">
+                </i>
+              </span>
+              <input formControlName="provincia" type="text" class="form-control" placeholder="Provincia" />
+            </div>
+
+            <!--------IMPUT urlPersona---------->
+            <!--   <div class="input-group mb-3">
+              <span class="input-group-text imput-group-lg-">
+                <i
+                  class="fa-solid fa-calendar-days"
+                  [class.green-icon]="this.form.get('urlPersona')?.valid"
+                  [class.red-icon]="
+                    this.form.get('urlPersona')?.invalid &&
+                    this.form.get('urlPersona')?.touched
+                  "
+                >
+                </i>
+              </span>
+              <input
+                formControlName="urlPersona"
+                type="text"
+                class="form-control"
+                placeholder="Url Persona"
+                
+              />
+            </div> -->
+
+            <!--------IMPUT imgPersona---------->
+            <!-- <div class="input-group mb-3">
+  <span class="input-group-text imput-group-lg-">
+    <i
+      class="fa-solid fa-calendar-days"
+      [class.green-icon]="this.form.get('imgPersona')?.valid"
+      [class.red-icon]="
+        this.form.get('imgPersona')?.invalid &&
+        this.form.get('imgPersona')?.touched
+      "
+    >
+    </i>
+  </span>
+  <input
+    formControlName="imgPersona"
+    type="text"
+    class="form-control"
+    placeholder="Img Persona"
+    
+  />
+</div> 
+ -->
+
+            <!------------Boton submit------->
+            <div class="d-grid gap-2">
+              <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                <i class="fa-solid fa-database"></i> &nbsp; Aceptar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

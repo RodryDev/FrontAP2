@@ -5,29 +5,18 @@ import { ApiService } from 'src/app/servicios/api.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from 'src/app/servicios/login.service';
 
-
-
-
-
-
-
 @Component({
   selector: 'app-acerca-de',
   templateUrl: './acerca-de.component.html',
-  styleUrls: ['./acerca-de.component.css']
+  styleUrls: ['./acerca-de.component.css'],
 })
 export class AcercaDeComponent implements OnInit {
-
-  listAcercaDe: any[] = [
-
-  ];
-
+  listAbout: any[] = [];
 
   form: FormGroup;
-  accion = 'agregar'
+  accion = 'agregar';
   id: number | undefined;
-  ulogged: string = "";
-
+  ulogged: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -36,129 +25,124 @@ export class AcercaDeComponent implements OnInit {
     public modal: NgbModal,
     private loginServ: LoginService
   ) {
-
-
     this.form = this.fb.group({
-      acercaDe: ["", Validators.required],
-
-    })
-
+      datosPersonales: ['', Validators.required],
+    });
   }
-
 
   ngOnInit(): void {
     this.ulogged = this.loginServ.getUserLogged();
-  this.obtenerAcercaDe();
+    this.obtenerAbout();
   }
 
-//////Guardo la lista AcercaDe en data////
-obtenerAcercaDe(){
-  this._apiService.getListAcercaDe().subscribe(data=>{
-    console.log(data);
-    this.listAcercaDe = data;
-  })
-
-}
-
-
-
-/////////Listar Acerca De/////
-
-guardarAcercaDe(){
-  console.log(this.form);
-
-  const AcercaDe:any = {
-    acercaDe:this.form.get("acercaDe")?.value,
-    
+  //////Guardo la lista de Persona  en data////
+  obtenerAbout() {
+    this._apiService.getListAbout().subscribe((data) => {
+      console.log(data);
+      this.listAbout = data;
+    });
   }
 
+  /////////Listar About/////
 
+  guardarAbout() {
+    console.log(this.form);
 
+    const About: any = {
+      datosPersonales: this.form.get('datosPersonales')?.value,
+    };
 
-  if(this.id == undefined){
-
-    ///se agrega un Acerca De
-    this._apiService.guardarAcercaDe(AcercaDe).subscribe(data=>{
-  
-      this.toastr.success('Los datos  fueron ingresados con exito!', 'Datos Registrados');
-      this.obtenerAcercaDe;
-      this.form.reset();
-      
-      }
-     //,error =>{ 
-       //this.toastr.error('Oops... ocurrio un error', 'Error')
+    if (this.id == undefined) {
+      ///se agrega una persona
+      this._apiService.guardarAbout(About).subscribe(
+        (data) => {
+          this.toastr.success(
+            'Los datos  fueron ingresados con exito!',
+            'Datos Registrados'
+          );
+          this.obtenerAbout;
+          this.form.reset();
+          window.location.reload();
+        }
+        //,error =>{
+        //this.toastr.error('Oops... ocurrio un error', 'Error')
         //console.log(error);
-     //}
-     
-     )
-     
-  
-  }else{
-  
-    AcercaDe.id = this.id;
-  
-    ///se edita Acerca De
-  
-    this._apiService.editarAcercaDe(this.id, AcercaDe).subscribe(data =>{
-      this.form.reset();
-      this.accion = 'Agregar';
-      this.id = undefined;
-      this.toastr.info('campo actualizado con exito');
-      this.obtenerAcercaDe();
-  
-      
-  window.location.reload()
-    })
-  
-    
+        //}
+      );
+    } else {
+      About.id = this.id;
+
+      ///se editar persona
+
+      this._apiService.editarAbout(this.id, About).subscribe((data) => {
+        this.form.reset();
+        this.accion = 'Agregar';
+        this.id = undefined;
+        this.toastr.info('campo actualizado con exito');
+        this.obtenerAbout();
+      });
+      window.location.reload();
+    }
   }
-  
-      }
+  /////////////Borrar Persona////////
+  borrarAbout(id: number) {
+    this._apiService.borrarAbout(id).subscribe(null, (data) => {
+      this.id = undefined;
+      this.toastr.error(
+        'El registro fue eliminado con exito!',
+        'Registro eliminado'
+      );
+      this.obtenerAbout();
+    });
+    //window.location.reload()
+  }
+  /////////Editar Educacion///////
 
-
-
-/////////////Borrar AcercaDe////////
-
-borrarAcercaDe(id:number){
-  this._apiService.borrarAcercaDe(id).subscribe(data=>{
-  this.toastr.error('El registro fue eliminado con exito!', 'Registro eliminado');
-  this.obtenerAcercaDe();
-  this.form.reset()
-  })
-  window.location.reload()
-  
-}
-
-/////////Editar AcercaDe///////
-
-editarAcercaDe(acercaDe: any){
+  /* editarEducacion(educacion: any){
+ 
 this.accion = 'Editar';
-this.id = acercaDe.id;
+this.id = educacion.id;
 
 ////puedo utilizar tambien setValue////
 //////para editar los campos del formulario////
 
 this.form.patchValue({
-  tituloAcercaDe: acercaDe.tituloAcercaDe,
-  
+  tituloEducacion: educacion.tituloEducacion,
+  urlDiploma: educacion.urlDiploma,
+  imgDiploma: educacion.imgDiploma,
+  institucion: educacion.institucion,
+  fechaInicio: educacion.fechaInicio,
+  fechaFin: educacion.fechaFin,
+  localidad: educacion.localidad
 })
 
 
-}
+} */
 
+  //////////MODALES//////
 
+  abrirFormulario(about: any) {
+    this.modal.open(about, { size: 'md', centered: true, scrollable: true });
+  }
+  //////////////EDITAR/////////////
+  editarAbout(about: any, abreModal: any) {
+    this.accion = 'Editar';
+    this.id = about.id;
+    this.form.patchValue({
+      datosPersonales: about.nombre,
+    });
 
-//////////MODALES//////
-
-abrirFormulario(acercaDe: any){
-this.modal.open(acercaDe,{size:'md', centered:true, scrollable:true});
-}
-
-
-
-
-
-
-
-
+    this.modal.open(abreModal, {
+      size: 'xl',
+      centered: true,
+      scrollable: true,
+    });
+    this.accion = 'Editar';
+    this._apiService.editarPersona(about, about).subscribe((data) => {
+      this.listAbout = data;
+      this.id = undefined;
+      this.toastr.info('Datos editados con éxito!', 'Datos Editados!');
+      this.obtenerAbout();
+    });
+  }
 }
