@@ -11,7 +11,7 @@ export class ApiService  {
 
   /////Url root///
   
-  private urlRoot = 'http://localhost:8080/api/'
+  private urlRoot = 'https://portfolio-rodrigo.herokuapp.com/api/'
   
  
 ////Metodos Persona//////////////////////////////////////////
