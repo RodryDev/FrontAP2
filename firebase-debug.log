@@ -1,0 +1,44 @@
+[debug] [2022-07-29T08:02:04.264Z] ----------------------------------------------------------------------
+[debug] [2022-07-29T08:02:04.267Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Rodry\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-07-29T08:02:04.267Z] CLI Version:   11.4.0
+[debug] [2022-07-29T08:02:04.267Z] Platform:      win32
+[debug] [2022-07-29T08:02:04.268Z] Node Version:  v16.14.2
+[debug] [2022-07-29T08:02:04.269Z] Time:          Fri Jul 29 2022 05:02:04 GMT-0300 (hora estándar de Argentina)
+[debug] [2022-07-29T08:02:04.269Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-29T08:02:04.364Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-29T08:02:04.365Z] > authorizing via signed-in user (rodryam88@gmail.com)
+[debug] [2022-07-29T08:02:04.365Z] [iam] checking project frontargentinaprograma for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-07-29T08:02:04.369Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/frontargentinaprograma:testIamPermissions [none]
+[debug] [2022-07-29T08:02:04.369Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/frontargentinaprograma:testIamPermissions x-goog-quota-user=projects/frontargentinaprograma
+[debug] [2022-07-29T08:02:04.369Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/frontargentinaprograma:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-07-29T08:02:05.672Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/frontargentinaprograma:testIamPermissions 200
+[debug] [2022-07-29T08:02:05.672Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/frontargentinaprograma:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-07-29T08:02:05.674Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/frontargentinaprograma [none]
+[debug] [2022-07-29T08:02:06.853Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/frontargentinaprograma 200
+[debug] [2022-07-29T08:02:06.853Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/frontargentinaprograma {"projectId":"frontargentinaprograma","projectNumber":"520406743918","displayName":"FrontAP","name":"projects/frontargentinaprograma","resources":{"hostingSite":"frontargentinaprograma","storageBucket":"frontargentinaprograma.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_9256e71b-1300-4ed0-be6e-40bee68e86fb"}
+[info] 
+[info] === Deploying to 'frontargentinaprograma'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-07-29T08:02:06.858Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/frontargentinaprograma [none]
+[debug] [2022-07-29T08:02:08.052Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/frontargentinaprograma 200
+[debug] [2022-07-29T08:02:08.052Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/frontargentinaprograma {"projectId":"frontargentinaprograma","projectNumber":"520406743918","displayName":"FrontAP","name":"projects/frontargentinaprograma","resources":{"hostingSite":"frontargentinaprograma","storageBucket":"frontargentinaprograma.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_9256e71b-1300-4ed0-be6e-40bee68e86fb"}
+[debug] [2022-07-29T08:02:08.055Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/520406743918/sites/frontargentinaprograma/versions [none]
+[debug] [2022-07-29T08:02:08.055Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/520406743918/sites/frontargentinaprograma/versions {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-07-29T08:02:09.841Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/520406743918/sites/frontargentinaprograma/versions 500
+[debug] [2022-07-29T08:02:09.841Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/520406743918/sites/frontargentinaprograma/versions {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2022-07-29T08:02:09.844Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500
+  }
+}
